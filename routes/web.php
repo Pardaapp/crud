@@ -15,9 +15,11 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 
+Route::get('/', [App\Http\Controllers\AuthController::class, 'FormLogin'])->name('FormLogin');
+Route::post('/login', [App\Http\Controllers\AuthController::class, 'Login'])->name('Login');
 Route::get('/admin', [UserController::class, 'index'])->name('user.index');
 
 Route::group(['prefix' => 'admin/user'], function () {
