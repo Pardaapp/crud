@@ -29,3 +29,7 @@ Route::group(['prefix' => 'admin/user'], function () {
     Route::post('/update/{id}', [UserController::class, 'update'])->name('user.update');
     Route::post('/delete', [UserController::class, 'destroy'])->name('user.delete');
 });
+
+Route::middleware(['auth', 'role:Super Admin'])->group(function () {
+    Route::get('/dashboard-admin', [App\Http\Controllers\AuthController::class, 'Admin'])->name('dashboard.admin');
+});

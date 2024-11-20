@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,6 +31,12 @@ class AuthController extends Controller
         }
 
         return redirect()->back()->withErrors(['login' => 'Email atau password salah.']);
+    }
+
+    public function admin()
+    {
+        $users = User::all();
+        return view('admin.index', compact('users'));
     }
 
 }
